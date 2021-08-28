@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Password Generator</string>
+    <string name="activity_title">Password Generator</string>
+    <string name="activity_include_numbers">Include numbers:</string>
+    <string name="activity_include_chars">Include chars:</string>
+    <string name="activity_include_caps">Include caps:</string>
+    <string name="activity_include_length">Length:</string>
+    <string name="activity_include_length_hint">8</string>
+    <string name="activity_include_button_generate">Generate!</string>
+</resources>

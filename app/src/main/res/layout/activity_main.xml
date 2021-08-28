@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+
+        <TextView
+            android:id="@+id/activity_title"
+            style="@style/PassGen.Text.Ordinary.Medium.Bold"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginTop="30dp"
+            android:text="@string/activity_title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/text_numbers"
+            style="@style/PassGen.Text.Ordinary"
+            android:layout_width="0dp"
+            android:layout_height="30sp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="@dimen/activity_item_title_margin"
+            android:text="@string/activity_include_numbers"
+            app:layout_constraintEnd_toStartOf="@+id/switch_numbers"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/activity_title" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/switch_numbers"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginTop="@dimen/activity_item_title_margin"
+            android:layout_marginEnd="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/text_numbers"
+            app:layout_constraintTop_toBottomOf="@+id/activity_title" />
+
+        <TextView
+            android:id="@+id/text_chars"
+            style="@style/PassGen.Text.Ordinary"
+            android:layout_width="0dp"
+            android:layout_height="30sp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="@dimen/activity_items_margin"
+            android:text="@string/activity_include_chars"
+            app:layout_constraintEnd_toStartOf="@+id/switch_numbers"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_numbers" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/switch_chars"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginTop="@dimen/activity_items_margin"
+            android:layout_marginEnd="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/text_numbers"
+            app:layout_constraintTop_toBottomOf="@+id/switch_numbers" />
+
+        <TextView
+            android:id="@+id/text_caps"
+            style="@style/PassGen.Text.Ordinary"
+            android:layout_width="0dp"
+            android:layout_height="30sp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="@dimen/activity_items_margin"
+            android:text="@string/activity_include_caps"
+            app:layout_constraintEnd_toStartOf="@+id/switch_numbers"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_chars" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/switch_caps"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginTop="@dimen/activity_items_margin"
+            android:layout_marginEnd="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/text_numbers"
+            app:layout_constraintTop_toBottomOf="@+id/switch_chars" />
+
+        <TextView
+            android:id="@+id/text_length"
+            style="@style/PassGen.Text.Ordinary"
+            android:layout_width="wrap_content"
+            android:layout_height="30sp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="@dimen/activity_items_margin"
+            android:text="@string/activity_include_length"
+            app:layout_constraintBottom_toBottomOf="@+id/edit_length_pass"
+            app:layout_constraintEnd_toStartOf="@+id/edit_length_pass"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_caps" />
+
+        <EditText
+            android:id="@+id/edit_length_pass"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="@dimen/activity_items_margin"
+            android:layout_marginEnd="20dp"
+            android:hint="@string/activity_include_length_hint"
+            android:inputType="number"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/text_length"
+            app:layout_constraintTop_toBottomOf="@+id/switch_caps" />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/activity_items_margin"
+            android:background="@color/gray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edit_length_pass" />
+
+        <TextView
+            android:id="@+id/text_generated_pass"
+            style="@style/PassGen.Text.Ordinary.Medium.Bold"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginHorizontal="@dimen/activity_items_spacing"
+            android:layout_marginTop="@dimen/activity_item_margin_generated_text"
+            android:gravity="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divider"
+            tools:text="Generated password here" />
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_items_margin"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divider" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button_generate"
+            style="@style/PassGen.Text.Ordinary.Button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_items_margin"
+            android:background="@color/light_blue"
+            android:text="@string/activity_include_button_generate"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_generated_pass" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

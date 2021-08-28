@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="activity_items_margin">18dp</dimen>
+    <dimen name="activity_item_margin_generated_text">10dp</dimen>
+    <dimen name="activity_items_spacing">20dp</dimen>
+    <dimen name="activity_item_title_margin">40dp</dimen>
+</resources>
