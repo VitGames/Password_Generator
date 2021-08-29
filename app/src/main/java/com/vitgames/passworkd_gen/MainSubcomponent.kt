@@ -1,11 +1,11 @@
 package com.vitgames.passworkd_gen
 
 import android.content.Context
-import com.vitgames.passworkd_gen.utils.Logger
-import com.vitgames.passworkd_gen.utils.LoggerImpl
+import com.vitgames.passworkd_gen.utils.*
 import dagger.Component
 import dagger.Module
 import dagger.Provides
+import rx.subscriptions.CompositeSubscription
 
 
 @Component(modules = [MainModule::class])
@@ -27,4 +27,13 @@ class MainModule(private val view: MainView, private val context: Context) {
 
     @Provides
     fun provideContext(): Context = context
+
+    @Provides
+    fun provideCompositeSubscription(): CompositeSubscription = CompositeSubscription()
+
+    @Provides
+    fun provideNetworkCheckManager(impl: NetworkCheckManagerImpl): NetworkCheckManager = impl
+
+    @Provides
+    fun provideNavigator(impl: AppNavigatorImpl): AppNavigator = impl
 }

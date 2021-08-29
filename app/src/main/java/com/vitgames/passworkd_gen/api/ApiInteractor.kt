@@ -7,7 +7,6 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class ApiInteractor {
-   // private var retrofit: Retrofit? = null
     private var baseURl: String = "https://passwordinator.herokuapp.com/"
 
     interface ApiInterface {
@@ -16,16 +15,13 @@ class ApiInteractor {
             @Query("num") hasNum: Boolean,
             @Query("char") hasChar: Boolean,
             @Query("caps") hasCaps: Boolean,
-            @Query("len") passLenght: Int
+            @Query("len") passLength: Int
         ): Call<PasswordModel>
     }
 
-    fun getClient(): Retrofit {
-       // if (retrofit == null) {
-        // }
-        return Retrofit.Builder()
-             .baseUrl(baseURl)
-             .addConverterFactory(GsonConverterFactory.create())
-             .build()
-    }
+    fun getClient(): Retrofit =
+        Retrofit.Builder()
+            .baseUrl(baseURl)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
 }

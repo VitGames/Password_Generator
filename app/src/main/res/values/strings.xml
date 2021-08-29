@@ -7,4 +7,13 @@
     <string name="activity_include_length">Length:</string>
     <string name="activity_include_length_hint">8</string>
     <string name="activity_include_button_generate">Generate!</string>
+
+    <string name="activity_toast_error_string_empty">Length is empty</string>
+    <string name="activity_toast_error_string_network">Please, check your connection</string>
+
+    <string name="activity_alert_network_title">Network error</string>
+    <string name="activity_alert_network_msg">App use internet connection to work. Please, check your connection</string>
+    <string name="activity_alert_network_close">Close</string>
+    <string name="activity_alert_network_settings">Open settings</string>
+
 </resources>
