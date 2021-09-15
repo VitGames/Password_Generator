@@ -10,14 +10,10 @@ import com.vitgames.passworkd_gen.utils.AppNavigator
 import com.vitgames.passworkd_gen.utils.Logger
 import retrofit2.Callback
 import retrofit2.Response
-import rx.Observable
-import rx.android.schedulers.AndroidSchedulers
-import rx.schedulers.Schedulers
 import rx.subscriptions.CompositeSubscription
 import javax.inject.Inject
 
 interface MainView {
-    fun showProgress(visible: Boolean)
     fun showPassword(password: String)
     fun showToast(message: String)
     fun showNetworkErrorAlertDialog()
@@ -38,8 +34,7 @@ class MainPresenterImpl @Inject constructor(
     private val navigator: AppNavigator,
     private val logger: Logger
 ) : MainPresenter {
-        // TODO check length pass
-        // TODO check night theme
+    // TODO check length pass
     override fun onEnterScreen() {
         if (!networkCheckManager.isNetworkEnabled()) {
             view.showNetworkErrorAlertDialog()
@@ -73,46 +68,26 @@ class MainPresenterImpl @Inject constructor(
         hasCaps: Boolean,
         length: Int
     ) {
-        initViewSubscription.add(
-            Observable.fromCallable {
-                val api = ApiInteractor().getClient().create(ApiInteractor.ApiInterface::class.java)
-                val callback: Call<PasswordModel> = api.getPassword(
-                    hasNum = hasNumbers,
-                    hasChar = hasChars,
-                    hasCaps = hasCaps,
-                    passLength = length
-                )
-                callback
+        val api = ApiInteractor().getClient().create(ApiInteractor.ApiInterface::class.java)
+        val callback: Call<PasswordModel> = api.getPassword(
+            hasNum = hasNumbers,
+            hasChar = hasChars,
+            hasCaps = hasCaps,
+            passLength = length
+        )
+        callback.enqueue(object : Callback<PasswordModel> {
+            override fun onResponse(call: Call<PasswordModel>, response: Response<PasswordModel>
+            ) {
+                val password = response.body().getPassword()
+                view.showPassword(password)
+                logger.printMessage("Response is:" + response.isSuccessful.toString() + password)
             }
-                .doOnSubscribe { view.showProgress(true) }
-                .doOnNext { view.showProgress(false) }
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(
-                    { callback ->
-                        callback.enqueue(object : Callback<PasswordModel> {
-                            override fun onResponse(
-                                call: Call<PasswordModel>,
-                                response: Response<PasswordModel>
-                            ) {
-                                val password = response.body().getPassword()
-                                view.showPassword(password)
 
-                                logger.printMessage("Response is:" + response.isSuccessful.toString() + password)
-                            }
-
-                            override fun onFailure(call: Call<PasswordModel>, t: Throwable?) {
-                                view.showToast(context.getString(R.string.activity_toast_error_string_empty))
-
-                                logger.printError("ERROR to callback response: $t")
-                            }
-                        }
-                        )
-                    },
-                    {
-                        logger.printError("ERROR in RX chain: $it")
-                    }
-                )
+            override fun onFailure(call: Call<PasswordModel>, t: Throwable?) {
+                view.showToast(context.getString(R.string.activity_toast_error_string_network))
+                logger.printError("ERROR to callback response: $t")
+            }
+        }
         )
     }
 }

@@ -54,14 +54,6 @@ class MainActivity : AppCompatActivity(), MainView {
         presenter.onExitScreen()
     }
 
-    override fun showProgress(visible: Boolean) {
-        if (visible) {
-            viewBinding.progressBar.visibility = View.VISIBLE
-        } else {
-            viewBinding.progressBar.visibility = View.GONE
-        }
-    }
-
     override fun showPassword(password: String) {
         viewBinding.textGeneratedPass.text = password
     }
